@@ -1,5 +1,6 @@
-package com.project.smartcafe.domain;
+package com.project.smartcafe.domain.user;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 @Data
 @Table(name = "security_role")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Role implements GrantedAuthority {
 
     private static final long serialVersionUID = 1L;
@@ -20,11 +22,6 @@ public class Role implements GrantedAuthority {
 
     @Column(name = "role_name")
     private String roleName;
-
-    public Role(long i, String role) {
-        this.id = i;
-        this.roleName = role;
-    }
 
     @Override
     public String getAuthority() {

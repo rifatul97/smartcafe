@@ -1,8 +1,6 @@
-package com.project.smartcafe.repository;
+package com.project.smartcafe.repository.user;
 
-import com.project.smartcafe.domain.Role;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import com.project.smartcafe.domain.user.Role;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

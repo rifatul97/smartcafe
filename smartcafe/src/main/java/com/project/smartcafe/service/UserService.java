@@ -1,8 +1,7 @@
 package com.project.smartcafe.service;
 
-import com.project.smartcafe.domain.User;
+import com.project.smartcafe.domain.user.User;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface UserService {

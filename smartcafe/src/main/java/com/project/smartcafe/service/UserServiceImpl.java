@@ -1,11 +1,10 @@
 package com.project.smartcafe.service;
 
-import com.project.smartcafe.domain.Role;
-import com.project.smartcafe.domain.User;
+import com.project.smartcafe.domain.user.Role;
+import com.project.smartcafe.domain.user.User;
 import com.project.smartcafe.exception.AlreadyExistException;
-import com.project.smartcafe.exception.NotFoundException;
-import com.project.smartcafe.repository.RoleRepository;
-import com.project.smartcafe.repository.UserRepository;
+import com.project.smartcafe.repository.user.RoleRepository;
+import com.project.smartcafe.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,6 @@
 package com.project.smartcafe.controller;
 
-import com.project.smartcafe.domain.Role;
-import com.project.smartcafe.domain.User;
+import com.project.smartcafe.domain.user.User;
 import com.project.smartcafe.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,6 @@ import java.util.stream.StreamSupport;
 @RestController
 @Slf4j
 @RequestMapping(path = "/api")
-//@CrossOrigin(origins = "https://react-e8amxy.stackblitz.io/") //http://localhost:3000
-//@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
     @Autowired
@@ -46,7 +43,6 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
-
 
 
 }
