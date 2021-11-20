@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -21,17 +22,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "username")
-    private String username;
-
-    @Column(name = "first_name")
+    @Column(name = "firstname")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "lastname")
     private String lastName;
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "username")
+    private String username;
 
     @Column(name = "password")
     @JsonIgnore
@@ -45,8 +46,8 @@ public class User {
                     referencedColumnName = "id"))
     private List<Role> roles;
 
-    @Column(name = "column")
-    private LocalDateTime createdAt;
+    @Column(name = "joindate")
+    private Timestamp createdAt;
 
     public User(String firstName, String lastName, String username, String email, String password, Role role) {
         this.username = username;
@@ -56,10 +57,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
 
-        createdAt = LocalDateTime.now();
+        createdAt = new Timestamp(System.currentTimeMillis());
     }
-
-    //private LocalDateTime lastUpdated;
-    //private LocalDateTime lastLoggedIn;
 
 }
