@@ -8,6 +8,7 @@ import com.project.smartcafe.repository.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,5 +32,9 @@ public class ProductService {
 
     public List<Product> searchByName(String name) {
         return productRepo.findByNameStartingWith(name);
+    }
+
+    public Iterable<Product> getAll() {
+        return productRepo.findAll();
     }
 }

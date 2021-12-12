@@ -7,6 +7,7 @@ import com.project.smartcafe.domain.user.User;
 import com.project.smartcafe.dto.CartProductDTO;
 import com.project.smartcafe.dto.UserCartDto;
 import com.project.smartcafe.dto.UserCartProductDto;
+import com.project.smartcafe.dto.UserCartProductRequestDto;
 import com.project.smartcafe.repository.cart.CartItemRepository;
 import com.project.smartcafe.repository.cart.UserCartRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,18 +32,28 @@ public class CartService {
         userCartRepo.save(new UserCart(userId));
     }
 
-    public List<UserCartDto> getUserCartByStatus(long userId, OrderStatus status) {
+    public List<UserCartDto> getUserCartByStatus(long userId, String status) {
         List<UserCartDto> userCartInfo = cartItemRepo
-                .findAllUserCartProduct(userId, status.toString());
+                .findAllUserCartProduct(userId, status);
         return userCartInfo;
     }
 
     public UserCart getUserCart(long userId) {
-        UserCart getUserCart = userCartRepo.getUserCartProductByStatus(userId);
+        List<UserCart> getUserCart = userCartRepo.getUserCartId(userId);
         if (getUserCart == null) {
             this.createUserCart(userId);
+        } else {
+            for (UserCart userCart: getUserCart) {
+                switch (userCart.getStatus()) {
+                    case "NEW", "PENDING", "FULLFILLING": {
+                        log.info("found usercart which is {}", userCart.toString());
+                        return userCart;
+                    }
+                }
+            }
         }
-        return userCartRepo.getUserCartProductByStatus(userId);
+        this.createUserCart(userId);
+        return getUserCart(userId);
     }
 
     public void addProductToUserCart(long userCartId, long productId, int quantity) {
@@ -59,5 +70,9 @@ public class CartService {
 
     public void removeCartItem(long cartId) {
         cartItemRepo.removeProductFromCart(cartId);
+    }
+
+    public List<UserCartProductDto> getUserCartProduct(UserCartProductRequestDto dto) {
+        return userCartRepo.getUserCartProductByStatus(dto.getUsercartid(), dto.getStatus());
     }
 }

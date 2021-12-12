@@ -52,8 +52,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeRequests()
-                .antMatchers("/api/user/login", "/api/product/**").permitAll()
-                .antMatchers("/api/user/**").hasAnyRole("CUSTOMER", "ADMIN")
+                .antMatchers("/api/user/login", "/api/product/**", "/api/cart/**", "/api/products").permitAll()
+                .antMatchers("/api/user/**").hasAnyRole("BARISTA", "CUSTOMER", "ADMIN")
                 .antMatchers("/api/users").hasRole("ADMIN")
                 .anyRequest().authenticated().and()
                 .addFilter(customAuthenticationFilter)
@@ -88,7 +88,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         // TokenAuthenticationFilter will ignore the below paths
         //web.ignoring().requestMatchers(PUBLIC_URLS);
-
+        web.ignoring().antMatchers(
+                HttpMethod.DELETE
+        );
         web.ignoring().antMatchers(
                 HttpMethod.POST,
                 "/user/login"

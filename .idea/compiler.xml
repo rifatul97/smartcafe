@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="smartcafe" target="11" />
+      <module name="smartcafe" target="14" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

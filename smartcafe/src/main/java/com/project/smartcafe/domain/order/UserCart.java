@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -21,9 +22,15 @@ public class UserCart implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Long id;
+
+    @Transient
+    public String getOrderIdBusiness(){
+        DecimalFormat myFormatter = new DecimalFormat("ORD000000");
+        return myFormatter.format(id);
+    }
 
     @Column
     private Long user_id;

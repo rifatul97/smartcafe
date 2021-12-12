@@ -24,6 +24,11 @@ public class ProductController {
     @Autowired private ProductService productService;
     @Autowired private CategoryService categoryService;
 
+    @GetMapping("/products")
+    public ResponseEntity<Iterable<Product>> getProducts() {
+        return ResponseEntity.ok(productService.getAll());
+    }
+
     @GetMapping("/product/category/")
     public ResponseEntity<List<Product>> getProductByCategory(@RequestParam(value = "id") long id) {
         if (id == 0) {

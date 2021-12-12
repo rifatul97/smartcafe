@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "products")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public abstract class Product {
 
     @Id
     @Column(name = "id")

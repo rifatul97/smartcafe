@@ -2,6 +2,7 @@ package com.project.smartcafe.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.smartcafe.domain.user.Role;
+import com.project.smartcafe.dto.CurrentUserCartStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

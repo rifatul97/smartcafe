@@ -39,14 +39,6 @@ public class UserCartService {
         return userCartInfo;
     }
 
-    public UserCart getUserCart(long userId) {
-        UserCart getUserCart = userCartRepo.getUserCartProductByStatus(userId);
-        if (getUserCart == null) {
-            this.createUserCart(userId);
-        }
-        return userCartRepo.getUserCartProductByStatus(userId);
-    }
-
     public void addProductToUserCart(long userCartId, long productId, int quantity) {
         cartItemRepo.save(new CartItem(quantity, productId, userCartId));
     }
@@ -56,5 +48,7 @@ public class UserCartService {
     }
 
 
-
+    public String getUserCartStatus(long userCartId) {
+        return userCartRepo.getUserCartStatus(userCartId);
+    }
 }

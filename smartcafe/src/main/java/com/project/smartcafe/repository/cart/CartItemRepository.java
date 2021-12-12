@@ -16,7 +16,8 @@ public interface CartItemRepository extends CrudRepository<CartItem, Long> {
             "where user_cart.user_id = :user_id and status = :status", nativeQuery = true)
     List<UserCartDto> findAllUserCartProduct(long user_id, String status);
 
-    @Query(value = "Delete From cart_item where cart_id = :cartId", nativeQuery = true)
+    @Modifying
+    @Query(value = "Delete From cart_item where id = :cartId", nativeQuery = true)
     void removeProductFromCart(long cartId); //just use delete.
 
     @Modifying
